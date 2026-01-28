@@ -4,7 +4,7 @@ import axios from "axios";
 const LOCAL_API = "http://localhost:5000";
 
 // 🔹 Production backend (Render)
-const PROD_API = "https://bi-rating-calculator.onrender.com";
+const PROD_API = "https://finassesspro.onrender.com";
 
 // 🔹 Auto select
 const API_BASE_URL =
