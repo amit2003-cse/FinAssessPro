@@ -2,20 +2,31 @@ import FormContainer from "./components/FormContainer";
 
 export default function App() {
   return (
-    <div className="min-h-screen bg-gray-100 flex items-center justify-center px-4">
-      <div className="w-full max-w-3xl bg-white shadow-md rounded-lg p-6 md:p-8">
-        {/* App Header */}
-        <div className="text-center mb-6">
-          <h1 className="text-2xl md:text-3xl font-bold text-blue-700">
-            BI Rating Calculator
+    // Background updated to slate-50 to match the clean theme
+    <div className="min-h-screen bg-slate-50 flex items-center justify-center px-4 py-8">
+      
+      <div className="w-full max-w-4xl">
+        {/* Header Section - Centered and Modern */}
+        <div className="text-center mb-8">
+          <h1 className="text-3xl md:text-4xl font-extrabold text-emerald-800 tracking-tight">
+            FinAssess<span className="text-emerald-500">Pro</span>
           </h1>
-          <p className="text-sm text-gray-600 mt-1">
-            Check your borrower intelligence score
+          <p className="text-slate-500 mt-2 text-sm md:text-base font-medium">
+            Advanced Borrower Eligibility & Risk Assessment
           </p>
         </div>
 
-        {/* Main Multi-Step Form */}
-        <FormContainer />
+        {/* Main Form Container Injection */}
+        {/* Note: Agar aapne mere pichle code wala FormContainer use kiya hai (jisme already white card tha), 
+            toh yahan extra shadow/bg lagane ki zarurat nahi hai. */}
+        <div className="w-full">
+           <FormContainer />
+        </div>
+
+        {/* Footer for LinkedIn Branding */}
+        <div className="mt-8 text-center text-xs text-slate-400">
+          <p>© 2025 Financial Assessment System | Developed by Amit Kumar</p>
+        </div>
       </div>
     </div>
   );
