@@ -1,3 +1,4 @@
+import { useEffect } from "react"; // 1. useEffect import kiya
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { step1Schema } from "../../validation/step1Schema";
@@ -5,6 +6,17 @@ import { useFormStore } from "../../store/useFormStore";
 
 export default function Step1Profile() {
   const { saveData, nextStep, formData } = useFormStore();
+
+  // 2. First render par API call karne ke liye useEffect
+  useEffect(() => {
+    fetch('https://finassesspro.onrender.com')
+      .then(() => {
+        console.log('backend started');
+      })
+      .catch((error) => {
+        console.error('Error starting backend:', error);
+      });
+  }, []); // Khali dependency array matlab "on mount"
 
   const {
     register,
@@ -27,7 +39,7 @@ export default function Step1Profile() {
     nextStep();
   };
 
-  // Reusable styles for cleaner code
+  // Reusable styles
   const labelStyle = "block text-sm font-semibold text-slate-700 mb-2";
   const inputStyle = "w-full px-4 py-3 rounded-lg border border-slate-200 bg-slate-50 text-slate-900 focus:bg-white focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 outline-none transition-all duration-200 placeholder-slate-400";
   const errorStyle = "text-red-500 text-xs mt-1 font-medium ml-1";
@@ -46,8 +58,7 @@ export default function Step1Profile() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-        
-        {/* Full Name (Full Width) */}
+        {/* ... baaki saara form inputs same rahega ... */}
         <div className="md:col-span-2">
           <label className={labelStyle}>Applicant Name</label>
           <input
@@ -59,13 +70,10 @@ export default function Step1Profile() {
           {errors.fullName && <p className={errorStyle}>{errors.fullName.message}</p>}
         </div>
 
-        {/* Age */}
         <div>
           <label className={labelStyle}>Age</label>
           <input
             type="number"
-            min="18"
-            max="75"
             {...register("age", { valueAsNumber: true })}
             className={inputStyle}
             placeholder="18 - 75"
@@ -73,27 +81,23 @@ export default function Step1Profile() {
           {errors.age && <p className={errorStyle}>{errors.age.message}</p>}
         </div>
 
-        {/* Mobile */}
         <div>
           <label className={labelStyle}>Mobile Number</label>
           <div className="relative">
-            {/* Optional: Simple prefix visual */}
             <span className="absolute left-4 top-3.5 text-slate-400 text-sm border-r border-slate-300 pr-2">
               +91
             </span>
             <input
               type="text"
               maxLength={10}
-              inputMode="numeric"
               {...register("mobile")}
-              className={`${inputStyle} pl-16`} // Padding left increased for +91
+              className={`${inputStyle} pl-16`}
               placeholder="9876543210"
             />
           </div>
           {errors.mobile && <p className={errorStyle}>{errors.mobile.message}</p>}
         </div>
 
-        {/* Email */}
         <div className="md:col-span-2">
           <label className={labelStyle}>Email Address</label>
           <input
@@ -105,7 +109,6 @@ export default function Step1Profile() {
           {errors.email && <p className={errorStyle}>{errors.email.message}</p>}
         </div>
 
-        {/* Applicant Type */}
         <div className="md:col-span-2">
           <label className={labelStyle}>Profession Type</label>
           <select
@@ -113,20 +116,19 @@ export default function Step1Profile() {
             className={`${inputStyle} appearance-none cursor-pointer bg-[url('https://upload.wikimedia.org/wikipedia/commons/9/9d/Caret_down_font_awesome_anchorunicode_f0d7.svg')] bg-[length:12px] bg-no-repeat bg-[right_1rem_center]`}
           >
             <option value="">Select your profession type</option>
-            <option value="Salaried">Salaried (Government/Private)</option>
-            <option value="SEP">Self-Employed Professional (Doctor, CA, etc.)</option>
-            <option value="SENP">Self-Employed Non-Professional (Business Owner)</option>
+            <option value="Salaried">Salaried</option>
+            <option value="SEP">Self-Employed Professional</option>
+            <option value="SENP">Self-Employed Non-Professional</option>
             <option value="Others">Others</option>
           </select>
           {errors.applicantType && <p className={errorStyle}>{errors.applicantType.message}</p>}
         </div>
       </div>
 
-      {/* Navigation - Button styled consistently */}
       <div className="flex justify-end pt-4 border-t border-slate-100">
         <button
           type="submit"
-          className="px-8 py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-medium rounded-xl shadow-lg shadow-emerald-200 transition-all transform hover:-translate-y-0.5 active:translate-y-0 focus:ring-4 focus:ring-emerald-500/30"
+          className="px-8 py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-medium rounded-xl shadow-lg shadow-emerald-200 transition-all transform hover:-translate-y-0.5"
         >
           Next Step &rarr;
         </button>
