@@ -1,111 +1,95 @@
-# FinAssessPro 📊
+# 📊 FinAssessPro
 
-![FinAssessPro Status](https://img.shields.io/badge/Status-Active-brightgreen) ![License](https://img.shields.io/badge/License-MIT-blue.svg)
+**FinAssessPro** is a high-performance, AI-driven financial assessment platform designed for modern lending ecosystems. It provides a comprehensive analysis of borrower eligibility and risk profiles using an advanced **Borrower Intelligence (BI) Score** engine.
 
-**Advanced Borrower Eligibility & Risk Assessment System**
+![Banner](https://img.shields.io/badge/FinAssessPro-v1.0.0-emerald?style=for-the-badge&logo=rocket)
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
+![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white)
 
-FinAssessPro is a modern, comprehensive financial assessment platform designed to evaluate borrower eligibility and risk. It calculates a dynamic Business/Borrower Intelligence (BI) Score using advanced algorithms based on an applicant's profile, employment, credit history, and banking strength.
+---
 
-🌐 [**Live Demo**](https://finassess-pro.netlify.app/)
+## 🚀 Vision
+FinAssessPro aims to bridge the transparency gap between borrowers and lenders. By analyzing **20+ critical financial parameters**, it delivers an instant, data-backed assessment that empowers users to understand their financial standing before approaching institutional lenders.
 
 ---
 
 ## ✨ Key Features
 
-- **Multi-Step Assessment Form**: Seamless and intuitive UI guiding users through Profile, Employment/Business, Credit & Banking, and Financial Strength sections.
-- **Dynamic BI Score Engine**: Calculates an intelligent score out of 100 based on core risk parameters (Age, Income, CIBIL, Bounce rates, Net Worth).
-- **Risk Band Categorization**: Automatically categorizes the application into *Low Risk*, *Moderate Risk*, or *High Risk*.
-- **Automated Email Notifications**: Real-time evaluation reports sent directly to the borrower via Resend integration.
-- **Secure Architecture**: Implemented with robust backend security including Express Rate Limit, Mongo Sanitize, and XSS Clean.
-- **Responsive & Accessible UI**: A beautiful, modern interface powered by Tailwind CSS and optimized for optimal user experience across all devices.
+- **🏆 Dynamic BI Score Engine**: A proprietary algorithm that evaluates Age, Employment Stability, Credit History (CIBIL), Banking Behavior, and Asset-to-Liability ratios.
+- **🛡️ Risk Categorization**: Instant classification into **Low**, **Moderate**, or **High Risk** bands with color-coded visual indicators.
+- **🎨 Premium UX/UI**: A glassmorphic, responsive interface built with Tailwind CSS 4, featuring a smooth multi-step assessment flow.
+- **📬 Automated Intelligence Reports**: Real-time integration with **Resend** to deliver detailed score breakdowns directly to the user's inbox.
+- **🔒 Enterprise-Grade Security**: Built-in protection against common vulnerabilities using `mongo-sanitize`, `xss-clean`, and sophisticated rate-limiting.
+- **⚡ Root-Level Orchestration**: Single-command execution for the entire full-stack environment.
 
 ---
 
 ## 🛠️ Tech Stack
 
-### Frontend
-- **React (Vite ⚡)**: Fast and efficient frontend framework.
-- **Tailwind CSS**: Utility-first CSS framework for a responsive and modern design.
-- **Zustand**: Lightweight and scalable state management.
-- **React Hook Form & Zod**: Robust form validation and error handling.
-- **Lucide React**: Beautiful and cohesive icon set.
-
-### Backend
-- **Node.js & Express**: Fast and scalable web server.
-- **MongoDB & Mongoose**: Flexible and powerful NoSQL database.
-- **Resend**: Reliable and instant email delivery service.
-- **Security Middlewares**: `cors`, `express-mongo-sanitize`, `express-rate-limit`, `xss-clean`.
+| Component | Technology |
+| :--- | :--- |
+| **Frontend** | React 19, Vite, Tailwind CSS 4, Zustand, React Hook Form, Zod |
+| **Backend** | Node.js, Express 5, Mongoose, Resend API |
+| **Database** | MongoDB Atlas (NoSQL) |
+| **Security** | Express Rate Limit, Mongo Sanitize, XSS Clean |
+| **Icons** | Lucide React |
 
 ---
 
-## 📂 Project Structure
+## 📂 Project Architecture
 
 ```text
 FinAssessPro/
-├── frontend/                # React (Vite) Application
-│   ├── src/
-│   │   ├── assets/          # Static assets
-│   │   ├── components/      # Reusable UI components & Form Steps
-│   │   ├── services/        # API integration logic
-│   │   ├── store/           # Zustand state management
-│   │   ├── validation/      # Zod validation schemas
-│   │   ├── App.jsx          # Main App Component
-│   │   └── main.jsx         # React Entry Point
-│   └── package.json
-└── backend/                 # Node.js / Express Server
-    ├── src/
-    │   ├── config/          # Database & Mailer configuration
-    │   ├── controllers/     # API request handlers (Lead Controller)
-    │   ├── middlewares/     # Rate Limiter & Security checks
-    │   ├── models/          # Mongoose Schemas (Lead)
-    │   ├── routes/          # Express Routers
-    │   ├── utils/           # BI Score Calculator Logic
-    │   └── app.js           # Express App Setup
-    ├── server.js            # Server Entry Point
-    └── package.json
+├── root/                    # Orchestration & Concurrency
+├── frontend/                # React (Vite) Client
+│   ├── src/components/      # Premium Step-based UI Components
+│   ├── src/store/           # Centralized Form State
+│   └── src/validation/      # Zod Schema Definitions
+└── backend/                 # API & Logic Server
+    ├── src/controllers/     # Lead Processing Logic
+    ├── src/utils/           # BI Scoring Algorithms
+    └── src/config/          # Mailer & DB Connectors
 ```
 
 ---
 
-## 🚀 Installation & Local Setup
+## 🏁 Getting Started
 
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/your-repo/FinAssessPro.git
-   cd FinAssessPro
-   ```
+### 1. Installation
+Clone the repository and install dependencies for all modules from the root directory:
+```bash
+git clone https://github.com/amit2003-cse/FinAssessPro.git
+cd FinAssessPro
+npm run install-all
+```
 
-2. **Backend Setup**
-   ```bash
-   cd backend
-   npm install
-   
-   # Create a .env file based on environment variables needed
-   # e.g., PORT=5000, MONGO_URI=..., RESEND_API_KEY=...
+### 2. Environment Configuration
+Create a `.env` file in the `backend/` directory:
+```env
+PORT=5000
+MONGO_URI=your_mongodb_connection_string
+RESEND_API_KEY=your_resend_api_key
+```
 
-   # Start the backend server
-   npm run dev
-   ```
-
-3. **Frontend Setup**
-   ```bash
-   cd ../frontend
-   npm install
-
-   # Start the vite development server
-   npm run dev
-   ```
-
-4. **Access the application** at `http://localhost:5173`.
+### 3. Launch the Platform
+Run both the frontend and backend concurrently with a single command from the root:
+```bash
+npm run dev
+```
+Explore the application at **`http://localhost:5173`**.
 
 ---
 
-## 📬 Contact & Author
+## 👩‍💻 Developed By
 
-**Amit Kumar**
+**Amit Kumar**  
+*Fullstack Developer | Financial Tech Enthusiast*
 
-- 💼 **LinkedIn**: [linkedin.com/in/amit-cse](https://www.linkedin.com/in/amit-cse/)
-- 📧 **Email**: [amit4321sg@gmail.com](mailto:amit4321sg@gmail.com)
-- 🌐 **Project Live Link**: [FinAssessPro](https://finassess-pro.netlify.app/)
-  
-> *Developed with a passion for modern web technologies and secure financial systems. If you find this project interesting, feel free to reach out for a chat!*
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/amit-cse/)
+[![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/amit2003-cse)
+
+---
+
+## 📄 License
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.

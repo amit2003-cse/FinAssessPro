@@ -65,10 +65,10 @@ export const calculateBIScore = (data) => {
     }
   
     /* ------------------ FINANCIAL STRENGTH ------------------ */
-    if (data.netWorthRatio >= 2) {
+    if (data.netWorthBorrowingRatio >= 2) {
       breakdown.strength += 15;
       score += 15;
-    } else if (data.netWorthRatio >= 1.25) {
+    } else if (data.netWorthBorrowingRatio >= 1.25) {
       breakdown.strength += 8;
       score += 8;
     } else {

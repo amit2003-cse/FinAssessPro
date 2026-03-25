@@ -88,75 +88,98 @@ export default function Result() {
   const strokeDashoffset = circumference - (biScore / 100) * circumference;
 
   return (
-    <div className="animate-in fade-in zoom-in duration-500 bg-white rounded-3xl shadow-xl shadow-slate-200/50 border border-slate-100 overflow-hidden">
+    <div className="animate-in fade-in zoom-in duration-700 bg-white rounded-3xl shadow-2xl shadow-slate-200/50 border border-slate-100 overflow-hidden max-w-2xl mx-auto">
       
-      {/* 1. Top Section: Score Gauge */}
-      <div className="pt-10 pb-8 px-6 text-center relative overflow-hidden">
-        {/* Decorative Background Blob */}
-        <div className={`absolute top-0 left-1/2 -translate-x-1/2 w-64 h-64 ${theme.bg} rounded-full blur-3xl opacity-50 -z-10`}></div>
+      {/* 1. Header: Score Visualization */}
+      <div className="pt-12 pb-10 px-8 text-center relative overflow-hidden bg-gradient-to-b from-slate-50 to-white">
+        {/* Decorative Background Elements */}
+        <div className={`absolute -top-24 -right-24 w-64 h-64 ${theme.bg} rounded-full blur-3xl opacity-30`}></div>
+        <div className={`absolute -bottom-24 -left-24 w-64 h-64 ${theme.bg} rounded-full blur-3xl opacity-20`}></div>
 
-        <h2 className="text-2xl font-bold text-slate-800 mb-2">BI Score Result</h2>
-        <p className="text-slate-500 text-sm mb-6">Generated via AI Analysis</p>
+        <h2 className="text-xl font-black text-slate-800 uppercase tracking-widest mb-1">Assessment Result</h2>
+        <p className="text-slate-400 text-xs font-bold mb-8 uppercase tracking-tighter">Verified by FinAssess Intelligence Engine</p>
 
         {/* Circular Gauge */}
-        <div className="relative w-48 h-48 mx-auto">
-            {/* SVG Ring */}
-            <svg className="w-full h-full transform -rotate-90">
-                <circle cx="50%" cy="50%" r={radius} stroke="currentColor" strokeWidth="10" fill="transparent" className="text-slate-100" />
+        <div className="relative w-56 h-56 mx-auto mb-6">
+            <svg className="w-full h-full transform -rotate-90 drop-shadow-sm">
+                <circle cx="50%" cy="50%" r={radius} stroke="currentColor" strokeWidth="12" fill="transparent" className="text-slate-100" />
                 <circle 
                     cx="50%" cy="50%" r={radius} 
-                    stroke="currentColor" strokeWidth="10" fill="transparent" 
+                    stroke="currentColor" strokeWidth="12" fill="transparent" 
                     strokeDasharray={circumference} 
                     strokeDashoffset={strokeDashoffset} 
                     strokeLinecap="round" 
-                    className={`${theme.ring} transition-all duration-1000 ease-out`} 
+                    className={`${theme.ring} transition-all duration-1500 ease-out`} 
                 />
             </svg>
             
-            {/* Center Score Text */}
             <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center">
-                <span className={`text-5xl font-black tracking-tighter ${theme.text}`}>
+                <span className={`text-6xl font-black tracking-tighter ${theme.text} animate-pulse-slow`}>
                     {biScore}
                 </span>
-                <span className="text-xs font-bold text-slate-400 uppercase mt-1">Out of 100</span>
+                <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest mt-1">BI Score</span>
             </div>
         </div>
 
         {/* Risk Badge */}
-        <div className={`inline-flex items-center gap-2 px-5 py-2 rounded-full border ${theme.bg} ${theme.border} mt-4`}>
-            <span className={theme.text}>{statusIcon}</span>
-            <span className={`font-bold text-sm ${theme.text} uppercase tracking-wide`}>
+        <div className={`inline-flex items-center gap-3 px-6 py-2.5 rounded-2xl border ${theme.bg} ${theme.border} shadow-sm`}>
+            <div className={`w-2.5 h-2.5 rounded-full ${colorTheme === 'emerald' ? 'bg-emerald-500' : colorTheme === 'amber' ? 'bg-amber-500' : 'bg-red-500'} animate-pulse`}></div>
+            <span className={`font-black text-sm ${theme.text} uppercase tracking-wider`}>
                 {riskBand}
             </span>
         </div>
       </div>
 
-      {/* 2. Middle Section: Insights Card */}
-      <div className="px-6 pb-6">
-        <div className="bg-slate-50 rounded-xl p-5 border border-slate-100">
-            <h3 className="text-sm font-bold text-slate-700 uppercase tracking-wide mb-3 flex items-center gap-2">
-                <svg className="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                Assessment Insight
-            </h3>
-            <p className="text-slate-600 text-sm leading-relaxed">
-                {adviceText} <br/>
-                <span className="text-xs text-slate-400 mt-2 block">
-                    *Final eligibility is subject to lender verification and internal credit policies.
-                </span>
+      {/* 2. Insights & Action Blocks */}
+      <div className="px-8 pb-10 space-y-6">
+        {/* Insight Card */}
+        <div className="bg-slate-50/50 rounded-2xl p-6 border border-slate-100 relative group">
+            <div className="absolute top-4 right-4 text-slate-200 group-hover:text-slate-300 transition-colors">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <h3 className="text-xs font-black text-slate-500 uppercase tracking-[0.2em] mb-3">Expert Analysis</h3>
+            <p className="text-slate-700 font-semibold leading-relaxed">
+                {adviceText}
             </p>
+            <p className="text-xs text-slate-400 mt-4 leading-relaxed italic">
+                *This score is generated based on self-declared data. Lenders may perform additional verification.
+            </p>
+        </div>
+
+        {/* Next Steps Section */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="p-4 rounded-2xl border border-slate-100 hover:border-emerald-100 hover:bg-emerald-50/30 transition-all cursor-pointer group">
+            <div className="w-10 h-10 bg-white rounded-xl shadow-sm border border-slate-100 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+              <svg className="w-5 h-5 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
+            </div>
+            <h4 className="text-sm font-bold text-slate-800 mb-1">Download Report</h4>
+            <p className="text-xs text-slate-500">Get a detailed PDF analysis.</p>
+          </div>
+          
+          <div className="p-4 rounded-2xl border border-slate-100 hover:border-blue-100 hover:bg-blue-50/30 transition-all cursor-pointer group">
+            <div className="w-10 h-10 bg-white rounded-xl shadow-sm border border-slate-100 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+              <svg className="w-5 h-5 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" /></svg>
+            </div>
+            <h4 className="text-sm font-bold text-slate-800 mb-1">Talk to Expert</h4>
+            <p className="text-xs text-slate-500">Free 15-min consultation.</p>
+          </div>
         </div>
       </div>
 
-      {/* 3. Footer: Actions */}
-      <div className="bg-slate-50 p-6 border-t border-slate-100 flex flex-col sm:flex-row gap-3">
+      {/* 3. Footer Actions */}
+      <div className="bg-slate-50 p-6 border-t border-slate-100 flex gap-3">
         <button
           onClick={resetForm}
-          className="flex-1 px-4 py-3 bg-white border border-slate-200 text-slate-700 font-semibold rounded-xl hover:bg-slate-50 transition-all shadow-sm"
+          className="flex-1 px-6 py-4 bg-white border border-slate-200 text-slate-700 font-bold rounded-2xl hover:bg-slate-100 transition-all flex items-center justify-center gap-2"
         >
-          ↺ Recalculate
+          <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
+          Recalculate
         </button>
-
-        
+        <button
+          className="flex-1 px-6 py-4 bg-slate-900 border border-slate-900 text-white font-bold rounded-2xl hover:bg-slate-800 transition-all shadow-xl shadow-slate-200 flex items-center justify-center gap-2"
+        >
+          Done
+        </button>
       </div>
     </div>
   );

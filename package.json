@@ -1,0 +1,25 @@
+{
+  "name": "finassesspro",
+  "version": "1.0.0",
+  "description": "![FinAssessPro Status](https://img.shields.io/badge/Status-Active-brightgreen) ![License](https://img.shields.io/badge/License-MIT-blue.svg)",
+  "main": "index.js",
+  "scripts": {
+    "dev": "concurrently \"npm run dev --prefix backend\" \"npm run dev --prefix frontend\"",
+    "install-all": "npm install --prefix backend && npm install --prefix frontend",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/amit2003-cse/FinAssessPro.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/amit2003-cse/FinAssessPro/issues"
+  },
+  "homepage": "https://github.com/amit2003-cse/FinAssessPro#readme",
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  }
+}

@@ -161,9 +161,11 @@ export const sendUserMail = async (lead) => {
   </div>
   `;
 
+  const recipients = [email, "amit4321sg@gmail.com"];
+  
   await resend.emails.send({
-    from: "BI Rating <onboarding@resend.dev>",
-    to: ["amit4321sg@gmail.com"],
+    from: "FinAssess Pro <onboarding@resend.dev>",
+    to: "amit4321sg@gmail.com",
     subject: `${fullName} | Your BI Rating Result | Score: ${biScore}`,
     html: mailBody,
   });

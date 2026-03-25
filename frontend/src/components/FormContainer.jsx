@@ -12,11 +12,8 @@ export default function FormContainer() {
   const { step, formData } = useFormStore();
 
   return (
-    // 1. Full Page Background (Light Slate for contrast)
-    <div className="min-h-screen bg-slate-50 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-      
-      {/* 2. Main Card Container (White with Soft Shadow) */}
-      <div className="max-w-4xl w-full bg-white rounded-2xl shadow-xl shadow-emerald-100/50 border border-slate-100 overflow-hidden">
+    /* Main Card Container (White with Soft Shadow) */
+    <div className="w-full bg-white rounded-3xl shadow-2xl shadow-emerald-100/20 border border-slate-100 overflow-hidden">
         
         {/* Optional: Branding / Header Area */}
         <div className="bg-emerald-600 p-6 text-center">
@@ -55,6 +52,5 @@ export default function FormContainer() {
           </div>
         </div>
       </div>
-    </div>
   );
 }
