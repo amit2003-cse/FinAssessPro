@@ -7,8 +7,8 @@ export default function ProgressBar() {
   const { step } = useFormStore();
 
   return (
-    <div className="w-full px-4 py-6 bg-white rounded-lg shadow-sm mb-8">
-      <div className="flex items-center justify-between relative">
+    <div className="w-full pb-6 border-b border-slate-100 mb-6">
+      <div className="flex items-center justify-between relative px-2">
         {steps.map((label, index) => {
           const stepNum = index + 1;
           const isActive = step >= stepNum;

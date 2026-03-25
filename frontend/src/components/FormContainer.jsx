@@ -26,10 +26,13 @@ export default function FormContainer() {
         </div>
 
         {/* 3. Form Content Area */}
-        <div className="p-6 md:p-10">
-          <ProgressBar />
+        <div className="relative">
+          {/* Integrated ProgressBar */}
+          <div className="pt-8 px-6 md:px-10">
+            <ProgressBar />
+          </div>
 
-          <div className="mt-8 animate-fadeIn">
+          <div className="p-6 md:p-10 !pt-0 mt-2 animate-fadeIn">
             {/* STEP 1: PROFILE */}
             {step === 1 && <Step1Profile />}
 

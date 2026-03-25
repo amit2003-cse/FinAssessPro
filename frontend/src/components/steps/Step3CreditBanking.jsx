@@ -29,10 +29,10 @@ export default function Step3CreditBanking() {
   };
 
   // Consistent Style System
-  const labelStyle = "block text-sm font-semibold text-slate-700 mb-2";
-  const inputStyle = "w-full px-4 py-3 rounded-lg border border-slate-200 bg-slate-50 text-slate-900 focus:bg-white focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 outline-none transition-all duration-200 placeholder-slate-400";
+  const labelStyle = "block text-[11px] font-black uppercase tracking-widest text-slate-400 mb-2 ml-1";
+  const inputStyle = "w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50/50 text-slate-900 focus:bg-white focus:ring-4 focus:ring-emerald-500/10 focus:border-emerald-500 outline-none transition-all duration-300 placeholder-slate-400 hover:border-slate-300 hover:bg-slate-50";
   const selectStyle = `${inputStyle} appearance-none cursor-pointer bg-[url('https://upload.wikimedia.org/wikipedia/commons/9/9d/Caret_down_font_awesome_anchorunicode_f0d7.svg')] bg-[length:12px] bg-no-repeat bg-[right_1rem_center]`;
-  const errorStyle = "text-red-500 text-xs mt-1 font-medium ml-1";
+  const errorStyle = "text-red-500 text-[10px] mt-1 font-bold ml-1 animate-pulse";
   const sectionTitleStyle = "text-xs font-bold text-slate-400 uppercase tracking-wider mb-4 mt-2";
 
   return (

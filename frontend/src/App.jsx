@@ -1,10 +1,19 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import FormContainer from "./components/FormContainer";
-import { CheckCircle2, ShieldCheck, Zap, ArrowRight, TrendingUp } from "lucide-react";
+import { CheckCircle2, ShieldCheck, Zap, ArrowRight, TrendingUp, Sparkles } from "lucide-react";
 
 export default function App() {
   const [showForm, setShowForm] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const formRef = useRef(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const scrollToForm = () => {
     setShowForm(true);
@@ -17,8 +26,12 @@ export default function App() {
     <div className="min-h-screen bg-[#f8fafc] text-slate-900 font-sans selection:bg-emerald-100 selection:text-emerald-900">
       
       {/* --- PREMIUM NAVIGATION BAR --- */}
-      <nav className="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-slate-200/60">
-        <div className="max-w-7xl mx-auto px-6 h-18 flex items-center justify-between">
+      <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${
+        isScrolled 
+        ? "bg-white/90 backdrop-blur-lg border-b border-slate-200 shadow-sm py-3" 
+        : "bg-transparent py-5"
+      }`}>
+        <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
           <div className="flex items-center gap-2 group cursor-pointer">
             <div className="w-10 h-10 bg-emerald-600 rounded-xl flex items-center justify-center shadow-lg shadow-emerald-200 group-hover:scale-105 transition-transform">
               <TrendingUp className="text-white w-6 h-6" />
@@ -30,36 +43,40 @@ export default function App() {
           
           <button 
             onClick={scrollToForm}
-            className="hidden md:flex items-center gap-2 bg-slate-900 hover:bg-slate-800 text-white px-5 py-2.5 rounded-full text-sm font-bold transition-all hover:shadow-xl hover:shadow-slate-200 active:scale-95"
+            className={`hidden md:flex items-center gap-2 bg-slate-900 hover:bg-slate-800 text-white px-6 py-2.5 rounded-full text-sm font-bold transition-all hover:shadow-xl hover:shadow-slate-200 active:scale-95 ${
+              isScrolled ? "opacity-100 translate-x-0" : "opacity-0 translate-x-4 pointer-events-none"
+            }`}
           >
-            Get Started
+            Start Now <Sparkles className="w-4 h-4 text-emerald-400" />
           </button>
         </div>
       </nav>
 
       {/* --- HERO SECTION --- */}
-      <section className="relative pt-32 pb-20 overflow-hidden">
+      <section className="relative pt-40 pb-20 overflow-hidden">
         {/* Decorative Background Elements */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full -z-10 overflow-hidden">
-          <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-emerald-100/40 rounded-full blur-[120px]"></div>
-          <div className="absolute bottom-[10%] right-[-5%] w-[30%] h-[30%] bg-blue-100/30 rounded-full blur-[100px]"></div>
+          <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-emerald-100/40 rounded-full blur-[120px] animate-pulse-slow"></div>
+          <div className="absolute bottom-[10%] right-[-5%] w-[40%] h-[40%] bg-blue-100/30 rounded-full blur-[100px]"></div>
+          {/* Add a subtle grid pattern */}
+          <div className="absolute inset-0 opacity-[0.03] bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] animate-subtle-scroll"></div>
         </div>
 
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="text-center max-w-4xl mx-auto">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-100 mb-6 animate-fade-in">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-slate-100 shadow-sm mb-8 animate-fade-in group hover:border-emerald-200 transition-colors">
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
               </span>
-              <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-700">AI-Powered Risk Assessment</span>
+              <span className="text-[10px] font-black uppercase tracking-widest text-slate-500 group-hover:text-emerald-600 transition-colors">AI-Powered Risk Assessment</span>
             </div>
             
-            <h1 className="text-5xl md:text-7xl font-black tracking-tight text-slate-900 mb-8 leading-[1.1]">
-              Know Your <span className="bg-gradient-to-r from-emerald-600 to-teal-500 bg-clip-text text-transparent">Financial Worth</span> Before You Apply.
+            <h1 className="text-5xl md:text-8xl font-black tracking-tight text-slate-900 mb-8 leading-[1]">
+              Know Your <br/> <span className="bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-500 bg-clip-text text-transparent italic px-2">Financial Worth</span> <br/> Before You Apply.
             </h1>
             
-            <p className="text-lg md:text-xl text-slate-600 mb-10 leading-relaxed font-medium max-w-2xl mx-auto">
+            <p className="text-xl md:text-2xl text-slate-500 mb-12 leading-relaxed font-medium max-w-3xl mx-auto">
               Get an instant Borrower Intelligence (BI) Score based on 20+ parameters. Used by professionals to assess lending eligibility and risk profiles.
             </p>
 
